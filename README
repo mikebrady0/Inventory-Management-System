@@ -1,0 +1,55 @@
+# Inventory Management System with Kivy UI  
+
+A Python-based Inventory Management System featuring an intuitive graphical user interface (GUI) built with the **Kivy framework**. This project is designed for small to medium-sized businesses to manage products efficiently, track inventory, and calculate revenue.  
+
+---
+
+## Features  
+- **Dynamic Inventory Management**: Add, update, and track product details such as name, quantity, and price.  
+- **Sales Tracking**: Reduce inventory quantities through sales and calculate revenue automatically.  
+- **Interactive User Interface**: Modern, user-friendly design with responsive input fields, buttons, and feedback messages.  
+- **Modular Architecture**: Built using object-oriented programming (OOP) principles for scalability and maintainability.  
+
+---
+
+## Technologies Used  
+- **Python**: Backend logic and functionality.  
+- **Kivy**: Cross-platform GUI framework for interactive design.  
+- **SQLite (optional)**: Ready for integration to enable persistent data storage.  
+
+---
+
+## How to Run  
+1. Clone this repository:  
+   ```bash
+   git clone https://github.com/username/inventory-management-kivy.git
+   ```  
+2. Navigate to the project directory:  
+   ```bash
+   cd inventory-management-kivy
+   ```  
+3. Install dependencies:  
+   ```bash
+   pip install kivy
+   ```  
+4. Run the application:  
+   ```bash
+   python main.py
+   ```  
+
+---
+
+## Future Enhancements  
+- Database integration with SQLite for persistent data storage.  
+- Advanced search and filter functionality.  
+- Enhanced UI/UX with additional design features.  
+- Export inventory data to CSV or Excel files.  
+
+---
+
+## License  
+This project is licensed under the [MIT License](LICENSE).  
+
+---
+
+Feel free to fork, contribute, or use this project as a base for your own inventory management system! 😊
