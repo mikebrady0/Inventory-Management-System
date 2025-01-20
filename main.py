@@ -1,3 +1,4 @@
+import sqlite3
 from kivy.app import App 
 from kivy.uix.boxlayout import BoxLayout 
 from kivy.uix.label import Label 
@@ -70,10 +71,13 @@ class Inventory:
 
 # --------------- UI LAYOUT ------------------------
 
+from database import InventoryDatabase
+
 class InventoryScreen(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.orientation = 'vertical'
+        self.db = InventoryDatabase() #Initialize connection
+        self.orientation = 'vertical' #Display orientation
         
         #Product name input
         self.add_widget(Label(text="Prodcuct Name:"))
@@ -116,27 +120,24 @@ class InventoryScreen(BoxLayout):
         
         if name and price and quantity:
             #Add product
-            self.inventory[name] = {
-                'price': float(price),
-                'quantity': int(quantity)
-            }
-            self.result_label.text = f"Added {name} to inventory!"
-            
-            self.product_name_input.text = ""
-            self.product_price_input.text = ""
-            self.product_quantity_input.text = ""
-            
+            if self.db.add_product(name, float(price), int(quantity)):
+                self.result_label.text = f"Added {name} to inventory!"
+            else:
+                self.result_label.text = f"Product {name} already exists!"
         else:
             self.result_label.text = "Please complete all fields"
-    
+            
     def show_inventory(self,instance):
-        if self.inventory:
-            inventory_text = "Current Inventory:\n"
-            for name, details in self.inventory.items():
-                inventory_text = f"{name}: ${details['price']}, Quantity:{details['quantity']}\n"
+        products = self.db.get_all_products()
+        
+        if products:
+            inventory_text = "Current inventory:\n"
+            for name, price, quantity in products:
+                inventory_text += f"{name}: {price}, Quantity: {quantity}\n"
             self.result_label.text = inventory_text
         else:
-            self.result_label.text = "Inventory is empty"
+            self.result_label.text = "Inventory is empty!"
+        
 class InventoryApp(App):
     def build(self):
         return InventoryScreen()
